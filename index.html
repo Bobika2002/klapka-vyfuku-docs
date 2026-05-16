@@ -27,44 +27,49 @@
 <body>
 
     <h1>Zásady ochrany soukromí</h1>
-    <p><strong>Aplikace:</strong> Klapka Výfuku (app.klapka.vyfuku)</p>
-    <p><strong>Poslední aktualizace:</strong> 15. května 2024</p>
+    <p><strong>Aplikace:</strong> Klapka Výfuku</p>
+    <p><strong>Balíček:</strong> app.klapka.vyfuku / app.klapka.vyfuku.wear</p>
+    <p><strong>Poslední aktualizace:</strong> 16. května 2026</p>
 
-    <p>Tato stránka informuje o zásadách týkajících se shromažďování, používání a zveřejňování osobních údajů při používání aplikace <strong>Klapka Výfuku</strong>.</p>
+    <p>Tyto zásady ochrany soukromí popisují, jak aplikace <strong>Klapka Výfuku</strong> nakládá s vašimi údaji. Naším cílem je zajistit maximální transparentnost a bezpečnost při používání našeho softwaru.</p>
 
     <div class="highlight">
-        <strong>Shrnutí:</strong> Vaše soukromí je pro nás prioritou. Aplikace neodesílá žádná vaše osobní data na žádné externí servery. Všechna nastavení zůstávají uložena lokálně ve vašem zařízení.
+        <strong>Klíčová informace:</strong> Tato aplikace je navržena s důrazem na soukromí. <strong>Neshromažďujeme, neukládáme ani nesdílíme žádné osobní údaje uživatelů.</strong> Veškerá komunikace probíhá lokálně mezi vaším zařízením a ovládací jednotkou.
     </div>
 
-    <h2>1. Shromažďování a používání informací</h2>
-    <p>Pro správnou funkci aplikace (zejména pro komunikaci s hardwarovou jednotkou klapky přes WiFi) aplikace vyžaduje určitá oprávnění. Žádné z těchto informací nejsou námi shromažďovány, prodávány ani sdíleny s třetími stranami.</p>
+    <h2>1. Shromažďování informací</h2>
+    <p>Aplikace neshromažďuje žádné osobní identifikovatelné informace (PII). Nevyžadujeme registraci, jméno, e-mail ani telefonní číslo pro základní funkčnost aplikace.</p>
 
-    <h2>2. Oprávnění k poloze (Location)</h2>
-    <p>Aplikace vyžaduje oprávnění <code>ACCESS_FINE_LOCATION</code>. Toto oprávnění je v systému Android <strong>technicky nezbytné</strong> pro:</p>
+    <h2>2. Vysvětlení vyžadovaných oprávnění</h2>
+    <p>Aby aplikace mohla plnit svou funkci (ovládání hardwarové klapky přes WiFi), vyžaduje v systému Android následující oprávnění:</p>
+
+    <h3>Oprávnění k poloze (Location Access)</h3>
+    <p>Aplikace žádá o oprávnění <code>ACCESS_FINE_LOCATION</code>. Toto oprávnění je v systému Android <strong>technicky vyžadováno pro skenování okolních WiFi sítí</strong>. Bez tohoto oprávnění aplikace nedokáže identifikovat a připojit se k WiFi síti vaší klapky.</p>
     <ul>
-        <li>Vyhledání (skenování) okolních WiFi sítí, které vysílá ovládací jednotka.</li>
-        <li>Získání názvu aktuálně připojené WiFi sítě (SSID).</li>
+        <li><strong>Důležité:</strong> Aplikace polohu uživatele nesleduje, neukládá ani neodesílá na žádné servery. Oprávnění je využito výhradně pro komunikaci s WiFi modulem.</li>
     </ul>
-    <p><strong>Důležité:</strong> Data o vaší přesné poloze nejsou aplikací nikdy ukládána, sledována ani nikam odesílána. Jsou využívána pouze v okamžiku konfigurace připojení k jednotce.</p>
 
-    <h2>3. WiFi a síťová komunikace</h2>
-    <p>Aplikace využívá WiFi připojení k odesílání příkazů do vaší ovládací jednotky. Tato komunikace probíhá napřímo (lokálně) mezi vaším telefonem a hardwarem klapky.</p>
+    <h3>WiFi a síťová komunikace</h3>
+    <p>Aplikace vyžaduje přístup k síti pro komunikaci s ESP32 jednotkou. Veškeré požadavky jsou směřovány na lokální IP adresu <code>192.168.4.1</code> a nikdy neopouštějí lokální síť vytvořenou klapkou.</p>
 
-    <h2>4. Zabezpečení dat</h2>
-    <p>Heslo k WiFi síti vaší klapky, které zadáte v nastavení, je uloženo v šifrované podobě přímo v chráněném úložišti vašeho telefonu pomocí standardu Android Keystore. K těmto datům nemá přístup žádná jiná aplikace ani útočník.</p>
+    <h2>3. Uchovávání dat</h2>
+    <p>Název sítě (SSID) a heslo ke klapce, které zadáte v nastavení, jsou uloženy <strong>výhradně lokálně</strong> ve vašem telefonu. Pro zvýšení bezpečnosti používáme na telefonech šifrované úložiště (EncryptedSharedPreferences), které chrání vaše údaje před neoprávněným přístupem.</p>
 
-    <h2>5. Změny těchto zásad</h2>
-    <p>Tyto zásady můžeme občas aktualizovat. Doporučujeme tuto stránku pravidelně kontrolovat. Změny nabývají účinnosti okamžitě po jejich zveřejnění na této adrese.</p>
+    <h2>4. Sdílení dat s třetími stranami</h2>
+    <p>Jelikož žádná data neshromažďujeme, nedochází k jejich prodeji, sdílení ani k analýze třetími stranami. Aplikace neobsahuje žádné analytické nástroje (jako Google Analytics) ani reklamní systémy.</p>
 
-    <h2>6. Kontaktujte nás</h2>
-    <p>Pokud máte jakékoli dotazy nebo připomínky týkající se těchto zásad ochrany soukromí, neváhejte nás kontaktovat na níže uvedeném e-mailu:</p>
+    <h2>5. Odkazy na jiné stránky</h2>
+    <p>Aplikace může obsahovat odkazy na externí stránky (např. dokumentaci nebo historii změn). Za obsah a zásady ochrany soukromí těchto externích stránek neneseme odpovědnost.</p>
+
+    <h2>6. Kontakt</h2>
+    <p>Máte-li jakékoli dotazy k těmto zásadám, kontaktujte nás na:</p>
 
     <a href="mailto:klapka.support@gmail.com" class="contact-button">
         klapka.support@gmail.com
     </a>
 
     <div class="footer">
-        Tento dokument byl vytvořen pro účely splnění podmínek distribuce aplikace v obchodě Google Play.
+        Tyto zásady jsou platné pro mobilní aplikaci i verzi pro Wear OS. Vytvořeno v souladu s požadavky Google Play Developer Program Policy.
     </div>
 
 </body>
