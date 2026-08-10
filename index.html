@@ -30,12 +30,12 @@
     <p><strong>Aplikace:</strong> Klapka Výfuku</p>
     <p><strong>Balíček:</strong> app.klapka.vyfuku / app.klapka.vyfuku.wear</p>
     <p><strong>Vývojář:</strong> b0bik</p>
-    <p><strong>Poslední aktualizace:</strong> 17. května 2026</p>
+    <p><strong>Poslední aktualizace:</strong> 10. srpna 2026</p>
 
     <p>Tyto zásady ochrany soukromí popisují, jak aplikace <strong>Klapka Výfuku</strong> nakládá s vašimi údaji. Naším cílem je zajistit maximální transparentnost a bezpečnost při používání našeho softwaru.</p>
 
     <div class="highlight">
-        <strong>Klíčová informace:</strong> Tato aplikace je navržena s důrazem na soukromí. <strong>Neshromažďujeme, neukládáme ani nesdílíme žádné osobní údaje uživatelů.</strong> Veškerá komunikace probíhá lokálně mezi vaším zařízením a ovládací jednotkou.
+        <strong>Klíčová informace:</strong> Tato aplikace je navržena s důrazem na soukromí. <strong>Neshromažďujeme, neukládáme ani nesdílíme žádné osobní údaje uživatelů.</strong> Ovládání klapky probíhá výhradně lokálně mezi vaším zařízením a ovládací jednotkou; do internetu aplikace sáhne jen pro soubor s aktualizací (viz oddíl 2).
     </div>
 
     <h2>1. Shromažďování informací</h2>
@@ -45,19 +45,36 @@
     <p>Aby aplikace mohla plnit svou funkci (ovládání hardwarové klapky přes WiFi), vyžaduje v systému Android následující oprávnění:</p>
 
     <h3>Oprávnění k poloze (Location Access)</h3>
-    <p>Aplikace žádá o oprávnění <code>ACCESS_FINE_LOCATION</code>. Toto oprávnění je v systému Android <strong>technicky vyžadováno pro skenování okolních WiFi sítí</strong>. Bez tohoto oprávnění aplikace nedokáže identifikovat a připojit se k WiFi síti vaší klapky.</p>
+    <p>Aplikace žádá o oprávnění <code>ACCESS_FINE_LOCATION</code> a <code>ACCESS_COARSE_LOCATION</code>. Toto oprávnění je v systému Android <strong>technicky vyžadováno pro skenování okolních WiFi sítí</strong>. Bez tohoto oprávnění aplikace nedokáže identifikovat a připojit se k WiFi síti vaší klapky.</p>
     <ul>
         <li><strong>Důležité:</strong> Aplikace polohu uživatele nesleduje, neukládá ani neodesílá na žádné servery. Oprávnění je využito výhradně pro komunikaci s WiFi modulem.</li>
     </ul>
 
     <h3>WiFi a síťová komunikace</h3>
-    <p>Aplikace vyžaduje přístup k síti pro komunikaci s ESP32 jednotkou. Veškeré požadavky jsou směřovány na lokální IP adresu <code>192.168.4.1</code> a nikdy neopouštějí lokální síť vytvořenou klapkou.</p>
+    <p>Aplikace vyžaduje oprávnění <code>INTERNET</code>, <code>ACCESS_WIFI_STATE</code>, <code>CHANGE_WIFI_STATE</code>, <code>ACCESS_NETWORK_STATE</code> a <code>CHANGE_NETWORK_STATE</code>, aby se mohla cíleně připojit k WiFi síti klapky a komunikovat s ESP32 jednotkou. Ovládání klapky probíhá <strong>výhradně v lokální síti</strong> — na adresu <code>192.168.4.1</code> (vlastní síť klapky), případně na adresu, kterou má klapka ve vaší domácí síti.</p>
+
+    <h3>Stahování aktualizací</h3>
+    <p>Kromě lokální komunikace aplikace <strong>navazuje spojení s internetem ve dvou případech</strong>:</p>
+    <ul>
+        <li><strong>kontrola nové verze aplikace</strong> a</li>
+        <li><strong>stažení firmwaru</strong> pro klapku (aktualizace přes OTA).</li>
+    </ul>
+    <p>Oba soubory se stahují z <code>drive.google.com</code>. Jde o prosté stažení souboru — <strong>neodesílají se při něm žádné vaše údaje</strong>, aplikace neposílá identifikátor zařízení ani statistiky používání. Jiné adresy než uvedené aplikace odmítne kontaktovat.</p>
+
+    <h3>Ostatní oprávnění</h3>
+    <ul>
+        <li><code>VIBRATE</code> — krátká odezva na dotyk při ovládání klapky.</li>
+        <li><code>WAKE_LOCK</code> — udržení zařízení vzhůru během aktualizace firmwaru, aby se přenos nepřerušil.</li>
+        <li><code>SCHEDULE_EXACT_ALARM</code> — naplánované ukončení aplikace po nastavené době nečinnosti (aby aplikace nedržela WiFi spojení s klapkou déle, než je potřeba).</li>
+    </ul>
+    <p>Aplikace <strong>nežádá</strong> o přístup ke kontaktům, fotografiím, souborům, mikrofonu, fotoaparátu ani k Bluetooth.</p>
 
     <h2>3. Uchovávání dat</h2>
     <p>Název sítě (SSID) a heslo ke klapce, které zadáte v nastavení, jsou uloženy <strong>výhradně lokálně</strong> ve vašem telefonu. Pro zvýšení bezpečnosti používáme na telefonech šifrované úložiště (EncryptedSharedPreferences), které chrání vaše údaje před neoprávněným přístupem.</p>
 
     <h2>4. Sdílení dat s třetími stranami</h2>
     <p>Jelikož žádná data neshromažďujeme, nedochází k jejich prodeji, sdílení ani k analýze třetími stranami. Aplikace neobsahuje žádné analytické nástroje (jako Google Analytics) ani reklamní systémy.</p>
+    <p>Jedinou externí službou, se kterou aplikace komunikuje, je <strong>Google Drive</strong> — a to výhradně pro stažení souboru s aktualizací (viz oddíl 2). Při tomto stažení se neodesílají žádné vaše údaje nad rámec toho, co ke spojení potřebuje samotný internetový protokol.</p>
 
     <h2>5. Odkazy na jiné stránky</h2>
     <p>Aplikace může obsahovat odkazy na externí stránky (např. dokumentaci nebo historii změn). Za obsah a zásady ochrany soukromí těchto externích stránek neneseme odpovědnost.</p>

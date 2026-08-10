@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Natankováno — zásady ochrany soukromí</title>
+<meta name="description" content="Zásady ochrany soukromí aplikace Natankováno. Aplikace neposílá data nikam kromě serveru, který si uživatel sám provozuje.">
+<style>
+    :root {
+        --bg: #0B1020; --karta: #141A2E; --ramecek: #263048;
+        --text: #E7ECF5; --tlumeny: #8B97AE; --akcent: #10B981;
+        color-scheme: dark;
+    }
+    * { box-sizing: border-box; }
+    html { background: var(--bg); }
+    body {
+        margin: 0; min-height: 100vh; background: var(--bg); color: var(--text);
+        font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+        font-size: 16px; line-height: 1.65;
+    }
+    main { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; }
+    h1 { font-size: 28px; margin: 0 0 4px; }
+    h2 {
+        font-size: 19px; margin: 36px 0 10px; padding-top: 22px;
+        border-top: 1px solid var(--ramecek);
+    }
+    .podnadpis { color: var(--tlumeny); margin: 0 0 6px; }
+    .datum { color: var(--tlumeny); font-size: 14px; }
+    .hlavni {
+        background: rgba(16, 185, 129, .10); border: 1px solid var(--akcent);
+        border-radius: 14px; padding: 18px 20px; margin: 26px 0 8px;
+    }
+    .hlavni p { margin: 0; }
+    ul { padding-left: 22px; }
+    li { margin: 6px 0; }
+    code {
+        background: var(--karta); border: 1px solid var(--ramecek);
+        padding: 2px 6px; border-radius: 6px; font-size: 14px;
+    }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--ramecek); vertical-align: top; }
+    th { color: var(--tlumeny); font-size: 13px; text-transform: uppercase; letter-spacing: .4px; }
+    a { color: var(--akcent); }
+    footer { margin-top: 44px; color: var(--tlumeny); font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+
+<h1>🚗 Natankováno</h1>
+<p class="podnadpis">Zásady ochrany soukromí</p>
+<p class="datum">Aplikace: Natankováno &middot; balíček <code>app.garaz</code> &middot;
+   vývojář b0bik &middot; platné od 10. 8. 2026</p>
+
+<div class="hlavni">
+    <p><strong>Aplikace neposílá vaše data nikam než na server, který si sami provozujete.</strong>
+       Autor aplikace k nim nemá přístup, nevidí je a nemůže je nijak získat. Aplikace
+       neobsahuje reklamy, měření návštěvnosti ani analytické nástroje a nevyžaduje
+       žádnou registraci ani účet.</p>
+</div>
+
+<h2>Jaká data aplikace zpracovává</h2>
+<p>Aplikace slouží k vedení evidence o autech. Pracuje s údaji, které do ní sami zadáte:</p>
+<ul>
+    <li>tankování — datum, počet litrů, cena, čerpací stanice,</li>
+    <li>stav tachometru,</li>
+    <li>servis, opravy a další výdaje,</li>
+    <li>termín technické kontroly a intervaly údržby,</li>
+    <li>fotografie účtenek a přístrojové desky, pokud je pořídíte.</li>
+</ul>
+<p>Údaje o autě mohou zahrnovat registrační značku, pokud ji sami vyplníte.
+   Aplikace ji nikam neodesílá — uloží se na váš server stejně jako vše ostatní.</p>
+
+<h2>Kam se data ukládají</h2>
+<p>Data se ukládají <strong>na server, který si sami provozujete</strong> (typicky domácí NAS)
+   a jehož adresu v aplikaci zadáte. Autor aplikace tento server neprovozuje, nezná jeho
+   adresu a nemá k němu přístup.</p>
+<p>V telefonu si aplikace dočasně drží:</p>
+<ul>
+    <li><strong>poslední stažený přehled</strong>, aby fungovala i bez signálu,</li>
+    <li><strong>frontu zápisů</strong>, které ještě nedorazily na server (například když
+        zapisujete tankování u čerpací stanice bez signálu),</li>
+    <li><strong>pořízené fotografie</strong> — jen do chvíle, než se odešlou na váš server;
+        pak se z telefonu smažou.</li>
+</ul>
+<p>Odinstalováním aplikace se tato dočasná data z telefonu odstraní.
+   Data na vašem serveru zůstávají — ta jsou plně ve vaší správě.</p>
+
+<h2>Proč aplikace potřebuje jednotlivá oprávnění</h2>
+<table>
+    <tr><th>Oprávnění</th><th>K čemu je potřeba</th></tr>
+    <tr>
+        <td><code>INTERNET</code></td>
+        <td>Spojení s vaším serverem — v domácí síti nebo přes VPN. Aplikace se
+            nepřipojuje k žádné jiné adrese než k té, kterou zadáte.</td>
+    </tr>
+    <tr>
+        <td><code>ACCESS_NETWORK_STATE</code></td>
+        <td>Zjištění, jestli je server na dosah. Podle toho aplikace pozná, kdy může
+            odeslat, co má uložené ve frontě.</td>
+    </tr>
+    <tr>
+        <td>Fotoaparát<br><span style="color:var(--tlumeny);font-size:14px">(nepovinná funkce, ne oprávnění)</span></td>
+        <td>Vyfocení účtenky a přístrojové desky. Aplikace <strong>nežádá o oprávnění
+            k fotoaparátu</strong> — otevře systémovou aplikaci Fotoaparát a převezme si
+            jen tu jednu vyfocenou fotku. Ke galerii ani k ostatním fotkám v telefonu
+            se nedostane. Bez fotoaparátu jde vše zapsat ručně.</td>
+    </tr>
+</table>
+<p>Aplikace <strong>nežádá o žádné běhové oprávnění</strong> — tedy o nic, na co by se
+   Android musel ptát. Nepřistupuje k poloze, kontaktům, mikrofonu, úložišti ani
+   k souborům mimo vlastní složku.</p>
+
+<h2>Automatické čtení účtenek</h2>
+<p>Aplikace umí z vyfocené účtenky přečíst datum, litry a cenu. Toto čtení
+   <strong>neprobíhá v cloudu</strong> — počítá se na vašem vlastním hardwaru
+   (na serveru, nebo na vašem počítači). Fotografie se tedy nikdy nedostane
+   k žádné externí službě.</p>
+<p>Přečtené hodnoty se nikdy nezapíší samy: vždy se jen předvyplní do formuláře
+   a čekají, až je zkontrolujete a potvrdíte.</p>
+
+<h2>Předávání dat třetím stranám</h2>
+<p>Žádná data nejsou předávána třetím stranám. Aplikace neobsahuje reklamní ani
+   analytické knihovny a neodesílá hlášení o pádech.</p>
+
+<h2>Děti</h2>
+<p>Aplikace není určena dětem do 13 let a žádné údaje o nich vědomě nezpracovává.</p>
+
+<h2>Vaše práva</h2>
+<p>Protože všechna data zůstávají u vás, máte nad nimi plnou kontrolu — můžete je
+   kdykoli zobrazit, upravit, exportovat i smazat přímo na svém serveru.
+   Autor aplikace nevystupuje jako správce vašich osobních údajů ve smyslu GDPR,
+   protože k nim nemá žádný přístup.</p>
+
+<h2>Změny těchto zásad</h2>
+<p>Pokud se zásady změní, bude na této stránce uvedeno nové datum platnosti.
+   Podstatné změny budou popsány v poznámkách k vydání aplikace.</p>
+
+<h2>Kontakt</h2>
+<p>Dotazy k soukromí: <a href="mailto:klapka.support@gmail.com">klapka.support@gmail.com</a></p>
+
+<footer>
+    Natankováno — evidence aut, která běží na vlastním serveru.<br>
+    <a href="../">Zásady soukromí aplikace Klapka Výfuku</a>
+</footer>
+
+</main>
+</body>
+</html>
